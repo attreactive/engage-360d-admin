@@ -1,0 +1,11 @@
+{
+  "name": "engage-360d-admin",
+  "version": "0.1.0",
+  "dependencies": {
+    "attreactive-mixins": "~0.1",
+    "attreactive-router": "~0.1",
+    "react": "~0.11",
+    "jquery-ui": "~1.10"
+  },
+  "private": true
+}
