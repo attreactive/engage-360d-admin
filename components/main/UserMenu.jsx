@@ -46,7 +46,7 @@ var UserMenu = React.createClass({
     return (
       <div className={classes}>
         <button type="button" className="btn btn-default dropdown-toggle" onClick={this._toggleDropdown}>
-          Vyacheslav Slinko
+          Actions
           <span className="caret"></span>
         </button>
         <ul className="dropdown-menu dropdown-menu-usermenu pull-right">
