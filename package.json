@@ -5,7 +5,8 @@
     "attreactive-mixins": "~0.1",
     "attreactive-router": "~0.1",
     "react": "~0.11",
-    "jquery-ui": "~1.10"
+    "jquery-ui": "~1.10",
+    "moment": "~2.7"
   },
   "private": true
 }
