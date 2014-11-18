@@ -149,6 +149,7 @@ var CrudList = React.createClass({
   },
 
   changeSorting: function (property) {
+    property = property.getId();
     if (this.state.sortingProperty === null) {
       this.setState({
         sortingProperty: property
@@ -172,6 +173,10 @@ var CrudList = React.createClass({
     var property = this.state.sortingProperty;
 
     if (property) {
+      property = this.props.resource.getProperties().filter(function(p) {
+        return p.getId() == property;
+      }).shift();
+
       items.sort(function (a, b) {
         return property.getFormatter().compare(
           a[property.getId()],
