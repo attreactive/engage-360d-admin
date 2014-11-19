@@ -142,8 +142,14 @@ var CrudList = React.createClass({
 
   renderHead: function() {
     return this.getListingProperties().map(function(property, index) {
+      var style = {
+        width: property.isLinkable() ? '100%' : 'auto',
+        paddingRight: '20px'
+      };
+
       return (
-        <th onClick={this.changeSorting.bind(this, property)} className="sorting" key={index}>{property.getTitle()}</th>
+        <th onClick={this.changeSorting.bind(this, property)} className="sorting" key={index}
+            style={style}>{property.getTitle()}</th>
       );
     }.bind(this));
   },
@@ -208,6 +214,10 @@ var CrudList = React.createClass({
             var value = this.readFormattedValue(property, item);
 
             if (property.isLinkable()) {
+              if (!value) {
+                value = <i>No title</i>;
+              }
+
               value = (
                 <a href={'#!' + this.getViewUrl(item)}>{value}</a>
               );
