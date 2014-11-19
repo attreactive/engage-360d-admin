@@ -8,6 +8,7 @@ var ResourceFormMixin = require('attreactive-admin/lib/mixins/ResourceFormMixin'
 var LinkedStateMixin = require("attreactive-mixins/lib/common/LinkedStateMixin");
 var LargeSpin = require('engage-360d-spin/components/LargeSpin');
 var cx = require('react/lib/cx');
+var cloneWithProps = require('react/lib/cloneWithProps');
 
 var CrudForm = React.createClass({
   mixins: [LinkedStateMixin, ResourceFormMixin],
@@ -97,11 +98,17 @@ var CrudForm = React.createClass({
       'has-error': this.isErrorMessageVisible(property.getId())
     });
 
+    var control = this.renderControl(property);
+
+    control = cloneWithProps(control, {
+      adminSetup: this.props.adminSetup
+    });
+
     return (
       <div className={classes}>
         <label className="col-sm-3 control-label">{property.getTitle()}</label>
         <div className="col-sm-6">
-          {this.renderControl(property)}
+          {control}
           {this.renderErrorMessage(property.getId())}
         </div>
       </div>

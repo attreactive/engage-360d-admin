@@ -8,6 +8,7 @@ var Topbar = require('./main/Topbar');
 var Sidebar = require('./main/Sidebar');
 var SignIn = require('./main/SignIn');
 var NotFound = require('./main/NotFound');
+var cloneWithProps = require('react/lib/cloneWithProps');
 
 require('../css/style.default.css');
 
@@ -43,6 +44,10 @@ var Admin = React.createClass({
 
     var page = pageFactory();
     var menu = adminSetup.getMenu().compile(adminSetup.getRouter().getCurrentLocation());
+
+    page = cloneWithProps(page, {
+      adminSetup: this.props.adminSetup
+    });
 
     return (
       <section>
