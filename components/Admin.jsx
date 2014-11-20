@@ -43,7 +43,13 @@ var Admin = React.createClass({
     }
 
     var page = pageFactory();
-    var menu = adminSetup.getMenu().compile(adminSetup.getRouter().getCurrentLocation());
+
+    var menu = this.props.menu.map(function(menu) {
+      return {
+        title: menu.title,
+        menu: menu.menu.compile(adminSetup.getRouter().getCurrentLocation())
+      };
+    });
 
     page = cloneWithProps(page, {
       adminSetup: this.props.adminSetup

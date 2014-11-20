@@ -48,13 +48,21 @@ var Sidebar = React.createClass({
     );
   },
 
+  renderMenuGroup: function(group) {
+    return (
+      <div>
+        <h5 className="sidebartitle">{group.title}</h5>
+        <ul className="nav nav-pills nav-stacked nav-bracket">
+          {group.menu.map(this.renderMenuItem)}
+        </ul>
+      </div>
+    );
+  },
+
   render: function() {
     return (
       <div className="leftpanelinner">
-        <h5 className="sidebartitle">Навигация</h5>
-        <ul className="nav nav-pills nav-stacked nav-bracket">
-          {this.props.menu.map(this.renderMenuItem)}
-        </ul>
+        {this.props.menu.map(this.renderMenuGroup)}
       </div>
     );
   }

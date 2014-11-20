@@ -107,6 +107,11 @@ var CrudList = React.createClass({
             </div>
           </div>
         </div>
+        {this.getResource().isCreationFormEnabled() &&
+          <div className="panel-footer">
+            <a className="btn btn-primary" href={'#!' + this.getResource().getCreationFormUrl()}>Добавить</a>
+          </div>
+        }
       </div>
     );
   },
