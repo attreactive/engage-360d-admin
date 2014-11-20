@@ -73,8 +73,12 @@ var PageForm = React.createClass({
             </div>
             <div className="panel-body">
               {this.props.pageBlockRegistry.getAll().map(function(pageBlockMeta) {
+                var style = {
+                  margin: '0 10px 10px 0'
+                };
+
                 return (
-                  <button className="btn btn-primary" onClick={this.addPageBlock.bind(this, pageBlockMeta)}>
+                  <button className="btn btn-primary" onClick={this.addPageBlock.bind(this, pageBlockMeta)} style={style}>
                     {pageBlockMeta.title}
                   </button>
                 );
