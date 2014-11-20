@@ -89,9 +89,11 @@ var DocumentListBlock = React.createClass({
       };
     });
 
-    this.state.documentIds = this.state.documentIds.filter(function(id) {
-      return !!documentsHash[id];
-    });
+    if (!this.state.loading) {
+      this.state.documentIds = this.state.documentIds.filter(function(id) {
+        return !!documentsHash[id];
+      });  
+    }
 
     return (
       <div className="panel">
@@ -109,7 +111,7 @@ var DocumentListBlock = React.createClass({
                 <tbody>
                   {this.state.documentIds.map(function(id, index, documentIds) {
                     var doc = documentsHash[id];
-                    
+
                     var up = function() {
                       move(this.state.documentIds, index, index-1);
                       this.update();
