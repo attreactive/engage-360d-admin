@@ -30,7 +30,7 @@ var FileInput = React.createClass({
         var file = this.refs.file.getDOMNode();
 
         $(file).fileupload({
-          url: '/api/files?token=' + authManager.getAuthorizationData().token,
+          url: '/api/files?token=' + encodeURIComponent(authManager.getAuthorizationData().token),
           dataType: 'json',
           paramName: 'file',
           add: this.handleChange,
