@@ -24,13 +24,20 @@ var FileInput = React.createClass({
     },
 
     attachHandler: function() {
-      var authManager = this.props.adminSetup.getAuthorizationManager();
+      var authManager;
+      if (this.props.adminSetup) {
+        authManager = this.props.adminSetup.getAuthorizationManager();
+      }
 
       if (this.refs.file) {
         var file = this.refs.file.getDOMNode();
+        var url = '/api/files';
+        if (authManager) {
+          url += '?token=' + encodeURIComponent(authManager.getAuthorizationData().token);
+        }
 
         $(file).fileupload({
-          url: '/api/files?token=' + encodeURIComponent(authManager.getAuthorizationData().token),
+          url: url,
           dataType: 'json',
           paramName: 'file',
           add: this.handleChange,

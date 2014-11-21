@@ -96,7 +96,7 @@ var BannersBlock = React.createClass({
                     <label className="col-sm-3 control-label">Баннер №{index + 1}</label>
                     <div className="col-sm-6">
                       <input type="text" className="form-control mb15" valueLink={titleLink} style={{width: 500}} placeholder="Заголовок" />
-                      <FileInput valueLink={imageLink} className="mb15" />
+                      <FileInput valueLink={imageLink} className="mb15" adminSetup={this.props.adminSetup} />
                       <input type="text" className="form-control mb15" valueLink={buttonTextLink} style={{width: 500}} placeholder="Текст кнопки" />
                       <input type="text" className="form-control mb15" valueLink={urlLink} style={{width: 500}} placeholder="Ссылка" />
                       {this.state.banners.length > 1 &&

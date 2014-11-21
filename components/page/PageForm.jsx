@@ -126,7 +126,7 @@ var PageForm = React.createClass({
       }.bind(this);
 
       return (
-        <PageBlockComponent pageBlock={pageBlock} update={update} remove={remove} meta={pageBlockMeta.meta} />
+        <PageBlockComponent pageBlock={pageBlock} update={update} remove={remove} meta={pageBlockMeta.meta} adminSetup={this.props.adminSetup} />
       );
     }, this);
   },
