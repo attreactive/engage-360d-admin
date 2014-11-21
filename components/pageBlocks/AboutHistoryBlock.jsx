@@ -29,8 +29,6 @@ var AboutHistoryBlock = React.createClass({
           <h3 className="panel-title">Группа текстовых блоков</h3>
         </div>
         <div className="panel-body">
-          <pre>{JSON.stringify(this.state)}</pre>
-
           {this.state.years.map(function(year, index) {
             var yearLink = {
               value: year.year,

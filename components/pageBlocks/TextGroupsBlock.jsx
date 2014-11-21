@@ -39,7 +39,6 @@ var TextGroupsBlock = React.createClass({
           <h3 className="panel-title">Группа текстовых блоков</h3>
         </div>
         <div className="panel-body">
-          <pre>{JSON.stringify(this.state)}</pre>
           <div className="form-inline">
             <div className="form-group">
               <label className="control-label">Тип:</label>

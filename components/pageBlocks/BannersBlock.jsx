@@ -42,8 +42,6 @@ var BannersBlock = React.createClass({
           <h3 className="panel-title">Баннеры</h3>
         </div>
         <div className="panel-body">
-          <pre>{JSON.stringify(this.state)}</pre>
-
           <div className="form-horizontal form-bordered">
             <div className="form-group">
               <label className="col-sm-3 control-label">Шаблон баннера</label>
