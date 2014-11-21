@@ -100,9 +100,11 @@ var CrudForm = React.createClass({
 
     var control = this.renderControl(property);
 
-    control = cloneWithProps(control, {
-      adminSetup: this.props.adminSetup
-    });
+    if (control) {
+      control = cloneWithProps(control, {
+        adminSetup: this.props.adminSetup
+      });
+    }
 
     return (
       <div className={classes}>

@@ -51,9 +51,11 @@ var Admin = React.createClass({
       };
     });
 
-    page = cloneWithProps(page, {
-      adminSetup: this.props.adminSetup
-    });
+    if (page) {
+      page = cloneWithProps(page, {
+        adminSetup: this.props.adminSetup
+      });
+    }
 
     return (
       <section>
