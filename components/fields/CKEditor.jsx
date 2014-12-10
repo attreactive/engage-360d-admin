@@ -25,7 +25,7 @@ function load(callback) {
   promise.then(function() {
     promise = null;
     callback();
-  })
+  });
 }
 
 var CKEditor = React.createClass({

@@ -9,6 +9,8 @@ var LinkedStateMixin = require("attreactive-mixins/lib/common/LinkedStateMixin")
 var LargeSpin = require('engage-360d-spin/components/LargeSpin');
 var cx = require('react/lib/cx');
 
+var count = 0;
+
 var PageForm = React.createClass({
   mixins: [LinkedStateMixin, ResourceFormMixin],
 
@@ -38,8 +40,12 @@ var PageForm = React.createClass({
     return page;
   },
 
-  addPageBlock: function(pageBlockMeta) {
-    this.state.item.pageBlocks.push({
+  addPageBlock: function(pageBlockMeta, blockIndex) {
+    if (blockIndex === undefined) {
+      blockIndex = this.state.item.pageBlocks.length;
+    }
+
+    this.state.item.pageBlocks.splice(blockIndex, 0, {
       type: pageBlockMeta.type,
       json: pageBlockMeta.initialJSON,
       keyword: ''
@@ -68,24 +74,6 @@ var PageForm = React.createClass({
           {this.renderForm()}
           {this.renderPageBlocks()}
           <div className="panel">
-            <div className="panel-heading">
-              <h3 className="panel-title">Добавить новый блок</h3>
-            </div>
-            <div className="panel-body">
-              {this.props.pageBlockRegistry.getAll().map(function(pageBlockMeta) {
-                var style = {
-                  margin: '0 10px 10px 0'
-                };
-
-                return (
-                  <button className="btn btn-primary" onClick={this.addPageBlock.bind(this, pageBlockMeta)} style={style}>
-                    {pageBlockMeta.title}
-                  </button>
-                );
-              }, this)}
-            </div>
-          </div>
-          <div className="panel">
             <div className="panel-body">
               <button className="btn btn-primary" onClick={this.save}>Сохранить</button>
             </div>
@@ -97,6 +85,14 @@ var PageForm = React.createClass({
 
   renderPageBlocks: function() {
     var pageBlockRegistry = this.props.pageBlockRegistry;
+
+    if (this.state.item.pageBlocks.length === 0) {
+      return (
+        <div>
+          {this.renderAddButtonsBlock()}
+        </div>
+      );
+    }
 
     return this.state.item.pageBlocks.map(function(pageBlock, index) {
       var pageBlockMeta = pageBlockRegistry.getPageBlockComponent(pageBlock.type);
@@ -126,9 +122,39 @@ var PageForm = React.createClass({
       }.bind(this);
 
       return (
-        <PageBlockComponent pageBlock={pageBlock} update={update} remove={remove} meta={pageBlockMeta.meta} adminSetup={this.props.adminSetup} />
+        <div>
+          <PageBlockComponent key={count++} pageBlock={pageBlock} update={update} remove={remove} meta={pageBlockMeta.meta} adminSetup={this.props.adminSetup} />
+          {this.renderAddButtonsBlock(index + 1)}
+        </div>
       );
     }, this);
+  },
+
+  renderAddButtonsBlock: function (blockIndex) {
+    if (blockIndex === undefined) {
+      blockIndex = this.state.item.pageBlocks.length;
+    }
+
+    return (
+      <div className="panel">
+        <div className="panel-heading">
+          <h3 className="panel-title">Добавить новый блок</h3>
+        </div>
+        <div className="panel-body">
+          {this.props.pageBlockRegistry.getAll().map(function(pageBlockMeta) {
+            var style = {
+              margin: '0 10px 10px 0'
+            };
+
+            return (
+              <button className="btn btn-primary" onClick={this.addPageBlock.bind(this, pageBlockMeta, blockIndex)} style={style}>
+                {pageBlockMeta.title}
+              </button>
+            );
+          }, this)}
+        </div>
+      </div>
+    );
   },
 
   renderTitle: function() {
