@@ -93,30 +93,37 @@ var PageTree = React.createClass({
     });
 
     return (
-      <table className="table table-bordered table-hover table-primary">
-        <thead>
-          <tr>
-            <th>Заголовок</th>
-            <th>Ссылка</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map(function(item, index) {
-            return (
-              <tr style={{cursor: 'pointer'}} onClick={this.openItem.bind(this, item)}>
-                <td>
-                  <div style={{paddingLeft: (20 * item.level)}}>
-                    {item.title}
-                  </div>
-                </td>
-                <td>
-                  {item.url}
-                </td>
-              </tr>
-            );
-          }, this)}
-        </tbody>
-      </table>
+      <div>
+        <table className="table table-bordered table-hover table-primary">
+          <thead>
+            <tr>
+              <th>Заголовок</th>
+              <th>Ссылка</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map(function(item, index) {
+              return (
+                <tr style={{cursor: 'pointer'}} onClick={this.openItem.bind(this, item)}>
+                  <td>
+                    <div style={{paddingLeft: (20 * item.level)}}>
+                      {item.title}
+                    </div>
+                  </td>
+                  <td>
+                    {item.url}
+                  </td>
+                </tr>
+              );
+            }, this)}
+          </tbody>
+        </table>
+        {this.getResource().isCreationFormEnabled() &&
+          <div className="panel-footer">
+            <a className="btn btn-primary" href={'#!' + this.getResource().getCreationFormUrl()}>Создать</a>
+          </div>
+        }
+      </div>
     );
   }
 });
