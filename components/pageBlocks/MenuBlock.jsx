@@ -10,7 +10,7 @@ var Select = require('../form/Select');
 
 require('./MenuBlock.less');
 
-var BannersBlock = React.createClass({
+var MenuBlock = React.createClass({
   mixins: [PageBlockMixin],
 
   renderTree: function(items, level) {
@@ -30,6 +30,7 @@ var BannersBlock = React.createClass({
         name: '',
         url: '',
         img: '',
+        groupId: items.length % 4 % 2,
         children: []
       });
       this.props.update(this.state);
@@ -155,4 +156,4 @@ var BannersBlock = React.createClass({
   }
 });
 
-module.exports = BannersBlock;
+module.exports = MenuBlock;
