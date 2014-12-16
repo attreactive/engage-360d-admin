@@ -45,6 +45,8 @@ var PageForm = React.createClass({
       blockIndex = this.state.item.pageBlocks.length;
     }
 
+    count += this.state.item.pageBlocks.length;
+
     this.state.item.pageBlocks.splice(blockIndex, 0, {
       type: pageBlockMeta.type,
       json: pageBlockMeta.initialJSON,
@@ -123,7 +125,7 @@ var PageForm = React.createClass({
 
       return (
         <div>
-          <PageBlockComponent key={count++} pageBlock={pageBlock} update={update} remove={remove} meta={pageBlockMeta.meta} adminSetup={this.props.adminSetup} />
+          <PageBlockComponent key={count + index} pageBlock={pageBlock} update={update} remove={remove} meta={pageBlockMeta.meta} adminSetup={this.props.adminSetup} />
           {this.renderAddButtonsBlock(index + 1)}
         </div>
       );
