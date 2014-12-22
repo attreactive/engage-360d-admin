@@ -35,6 +35,7 @@ var CKEditor = React.createClass({
 
   _init: function() {
     this.editor = CKEDITOR.replace(this.refs.editor.getDOMNode());
+    this.editor.config.allowedContent = true;
     this.editor.config.extraAllowedContent = 'div(*)';
     this.editor.setData(this.props.valueLink.value);
     this.editor.on('change', function() {
