@@ -3,6 +3,7 @@
  * @jsx React.DOM
  */
 
+var $ = require('jquery');
 var React = require("react");
 var PageBlockMixin = require('./PageBlockMixin');
 
@@ -10,16 +11,17 @@ var AboutOwnCalculations = React.createClass({
   mixins: [PageBlockMixin],
 
   addDocument: function() {
-    this.state.documents.push({
+    this.state.documents.unshift({
       uri: '',
       name: ''
     });
     this.props.update(this.state);
+    window.scrollTo(0, $(this.refs.panel.getDOMNode()).offset().top);
   },
 
   render: function() {
     return (
-      <div className="panel">
+      <div className="panel" ref="panel">
         <div className="panel-heading">
           <div className="panel-btns">
             <a href="#" className="panel-close" onClick={this.props.remove}>×</a>
