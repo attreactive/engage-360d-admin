@@ -31,7 +31,7 @@ var FileInput = React.createClass({
 
       if (this.refs.file) {
         var file = this.refs.file.getDOMNode();
-        var url = '/api/files';
+        var url = '/api/old/files';
         if (authManager) {
           url += '?token=' + encodeURIComponent(authManager.getAuthorizationData().token);
         }
