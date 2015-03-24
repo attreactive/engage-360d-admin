@@ -55,7 +55,7 @@ var FileInput = React.createClass({
     },
 
     handlePostRequest: function(event, data) {
-      var file = data.data;
+      var file = data.result.data;
       this.setState({uploading: false});
       this.props.valueLink.requestChange(file.url);
     },
