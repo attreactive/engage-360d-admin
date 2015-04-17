@@ -29,7 +29,10 @@ var TextPageBlock = React.createClass({
           <h3 className="panel-title">Текстовый блок</h3>
         </div>
         <div className="panel-body">
-          <CKEditor valueLink={link} />
+          <CKEditor valueLink={link}
+                    fileBrowser={this.props.meta && this.props.meta.fileBrowser}
+                    fileBrowserBrowseUrl={this.props.meta && this.props.meta.fileBrowserBrowseUrl}
+                    fileBrowserImageBrowseUrl={this.props.meta && this.props.meta.fileBrowserImageBrowseUrl} />
         </div>
       </div>
     );
